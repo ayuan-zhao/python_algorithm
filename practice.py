@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
-import numpy
-from numpy import matrix
-
 class Solution:
-   def minSubArrayLen(self,nums,totaltarget):
-    res = float("inf")
-    total = 0
-    left = 0
-    for right in  range(len(nums)):
-        total += nums[right]
-        while total >= totaltarget:
-            res = min(res,right - left + 1 )
-            total = total - nums[left]
-            left += 1
-    return 0 if res == float("inf") else res       
-
+    def twoSum(self,nums,target):
+        prevmap = {}
+        for i, n in enumerate(nums):
+            if target - n not in prevmap:
+                prevmap[n] = i
+            else: 
+                return (prevmap[target- n],i)    
+                
 
  
 
@@ -22,7 +15,7 @@ class Solution:
 
 
 so = Solution()
-nums1 = [1, 2, 4, 5, 2, 1]
-answer = so.minSubArrayLen(nums1, 13 )
-print(answer)
+nums = [1, 3, 4, 5, 6, 10, 7]
+ts = so.twoSum(nums, 15)
+print(ts)
 

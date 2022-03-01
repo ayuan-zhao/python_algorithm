@@ -38,24 +38,29 @@ class Solution:
                 dict[nums[i]] = i
             else:
                 # dict[target-nums[i]]
-                return [dict[target - nums[i]], i]
+                return [dict[target - nums[i]]
+                , i]
 
     def twoSumOpt(self, nums, target):
-        prevmap = {}  # val: index
+        prevmap = {}  #会设key是nums的value，value是nums的indexing
         # 这里的i是indexing,n是value
         for i, n in enumerate(nums):
-            #print("i", i)
-            #print("n", n)
             # 找的是这个key
             if target - n in prevmap:
-                print ( "i=", i, n=", n, "target", target, "target - n= ", target - n)
-                print("prevmap[target - n]", prevmap[target - n])
+                #prevmap[target - n] 这个整体是prevmap的value是indexing，i 本身就是indexing
                 return [prevmap[target - n], i]
 
             prevmap[n] = i
             print(prevmap)
         return
-
+    
+    def twoSumfinal (self,nums,target):
+        prevmap = {}
+        for i, n in enumerate(nums):
+            if target - n not in prevmap:
+                prevmap[n] = i
+            else: 
+                return (prevmap[target- n],i)    
 
 so = Solution()
 nums = [1, 3, 4, 5, 6, 10, 7]
@@ -67,12 +72,21 @@ nums = [1, 3, 4, 5, 6, 10, 7]
 # prevmap 最后的样子{1: 0, 3: 1, 4: 2, 5: 3, 6: 4}
 ts = so.twoSumOpt(nums, 15)
 print(ts)
+
+so = Solution()
+nums = [1, 3, 4, 5, 6, 10, 7]
+# prevmap 最后的样子{1: 0, 3: 1, 4: 2, 5: 3, 6: 4}
+ts = so.twoSumfinal(nums, 15)
+print(ts)
+
 # 4 - 1 = 3, we just check if 3 is exist
 # use hash map
 # maping the value to the index
 # 为什么要建一个新的hash map而不是直接把list放入hash map,直接去查
 # 因为，每个元素不能用两遍，比如target是4， 4-2 = 2,2已经在里面了
 
+# print ( "i=", i, "n=" , n, "target", target, "target - n= ", target - n)
+#                 print("prevmap[target - n]", prevmap[target - n])
 # it can be initially empty
 # iterate through the array   O（N）
 # adding each value to our hash map————constant time
