@@ -12,7 +12,7 @@
 
 class Solution:
     # 暴力解
-    def twoSumBoLi(self, nums, target):
+    def twoSumBaoLi(self, nums, target):
         for i in nums:
             # 因为两数相加等于target,所以先循环一个，另一个是target - i
             j = target - i
@@ -38,46 +38,66 @@ class Solution:
                 dict[nums[i]] = i
             else:
                 # dict[target-nums[i]]
-                return [dict[target - nums[i]]
-                , i]
+                return [dict[target - nums[i]], i]
 
     def twoSumOpt(self, nums, target):
-        prevmap = {}  #会设key是nums的value，value是nums的indexing
+        prevmap = {}  # 会设key是nums的value，value是nums的indexing
         # 这里的i是indexing,n是value
         for i, n in enumerate(nums):
             # 找的是这个key
             if target - n in prevmap:
-                #prevmap[target - n] 这个整体是prevmap的value是indexing，i 本身就是indexing
+                # prevmap[target - n] 这个整体是prevmap的value是indexing，i 本身就是indexing
                 return [prevmap[target - n], i]
 
             prevmap[n] = i
-            print(prevmap)
+           # print(prevmap)
         return
-    
-    def twoSumfinal (self,nums,target):
+
+    def twoSumfinal(self, nums, target):
         prevmap = {}
         for i, n in enumerate(nums):
             if target - n not in prevmap:
                 prevmap[n] = i
-            else: 
-                return (prevmap[target- n],i)    
+            else:
+                return (prevmap[target - n], i)
+
+    def twoSumbasic(self,nums,target):
+        prevmap = {}
+        for i in range (len(nums)):
+            if target - nums[i] not in prevmap:
+                prevmap[nums[i]]= i
+            else:
+                return [prevmap[target- nums[i]],i]               
 
 so = Solution()
 nums = [1, 3, 4, 5, 6, 10, 7]
-ts = so.twoSum(nums, 15)
-print(ts)
+ts4 = so.twoSumBaoLi(nums, 15)
+print(ts4)
+
+so = Solution()
+nums = [1, 3, 4, 5, 6, 10, 7]
+ts0 = so.twoSum(nums, 15)
+print(ts0)
 
 so = Solution()
 nums = [1, 3, 4, 5, 6, 10, 7]
 # prevmap 最后的样子{1: 0, 3: 1, 4: 2, 5: 3, 6: 4}
-ts = so.twoSumOpt(nums, 15)
-print(ts)
+ts1 = so.twoSumOpt(nums, 15)
+print(ts1)
 
 so = Solution()
 nums = [1, 3, 4, 5, 6, 10, 7]
 # prevmap 最后的样子{1: 0, 3: 1, 4: 2, 5: 3, 6: 4}
-ts = so.twoSumfinal(nums, 15)
-print(ts)
+ts2 = so.twoSumfinal(nums, 15)
+print(ts2)
+
+so = Solution()
+nums = [1, 3, 4, 5, 6, 10, 7]
+ts3 = so.twoSumbasic(nums, 15)
+print(ts3)
+
+
+
 
 # 4 - 1 = 3, we just check if 3 is exist
 # use hash map
