@@ -1,14 +1,15 @@
 class Solution:
     def maxProfit(self, prices):
         left = 0  # Buy
-        right = 1  # Sell
+        right = 1  ##sell起码要和buy隔一天
         max_profit = 0
         while right < len(prices):
-            currentProfit = prices[right] - prices[left]  # our current Profit
+            currentProfit = prices[right] - prices[left] 
             if prices[left] < prices[right]:
                 max_profit = max(currentProfit, max_profit)
             else:
                 left = right
+                #left不要随便加，没找到更低的点就在这待着
             right += 1
         return max_profit
 
@@ -26,8 +27,9 @@ class Solution:
                 # 说明rightsell的数字更小,就把right的指针指向left
                 #之前不用换因为没有比这个小的
                 leftBuy = rightSell
+            #left不要随便加，没找到更低的点就在这待着
             rightSell += 1
-
+        #永远注意return位置
         return maxP
 
     # def maxProfit3(self, prices):
