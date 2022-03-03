@@ -1,21 +1,34 @@
 # -*- coding: utf-8 -*-
 class Solution:
-    def maxProfit(self, prices):
-        buy = 0
-        sell = 1#sell起码要和buy隔一天
-        maxprofit = 0
-        #先决条件：不能越界
-        while sell < len(prices):
-            if prices[buy] < prices[sell]:
-                currentprofit = prices[sell]-prices[buy]
-                maxprofit = max(maxprofit, currentprofit)
-            else:
-                buy = sell
-            #left不要随便加，没找到更低的点就在这待着
-            sell += 1
-        return maxprofit
-
+    def MaximumSumbarray(self,nums):
+        maxSub = nums[0]
+        curSum = 0
+        for n in nums:
+            if curSum < 0:
+                curSum = 0
+            curSum += n
+            maxSub = max(curSum,maxSub)
+        return maxSub  
 
 so = Solution()
-mp = so.maxProfit(prices=[2, 1,3,4,1,5,1,7])
-print(mp)
+an0 = so.MaximumSumbarray([4,6,3,2,-4,6,7,-10,2,3])
+an1 = so.MaximumSumbarray([-7,-3,-1,-5,-6])
+an2 = so.MaximumSumbarray([-1,-2,-1,-1])
+an3 = so.MaximumSumbarray([-1,-2,0,-3,-4])
+an4 = so.MaximumSumbarray([1,2,-3,-5,-3,8,-7,6]) 
+
+print("[4,6,3,2,-4,6,7,-10,2,3]")
+print(an0) 
+print("([-7,-3,-1,-5,-6])")
+print(an1) 
+print("[-1,-2,-1,-1])")
+print(an2) 
+print("[-1,-2,0,-3,-4])")
+print(an3) 
+print("[1,2,-3,-5,-3,8,-7,6]")
+print(an4) 
+
+
+        
+
+    

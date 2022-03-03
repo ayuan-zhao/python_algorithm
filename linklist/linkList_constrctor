@@ -1,0 +1,26 @@
+# -*- coding: utf-8 -*-
+# 所以如果不定义构造函数使用默认构造函数的话，在初始化的时候就不能直接给变量赋值！
+class ListNode:
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+#两种写法
+    # def __init__(self, elem):
+    #     self.elem = elem  # 保存数据
+    #     self.next = None  # 没有确定下一个的时候，先设为空    
+
+ # def removeElements(self, head: ListNode, val: int) -> ListNode:   
+    def removeElements(self,head):
+        dummy_head = ListNode(next = head)#添加一个虚拟节点
+        cur = dummy_head
+        while(cur.next != None):
+            if(cur.next.val==val):
+                cur.next = cur.next.next #删除cur.next节点
+            else:
+                cur = cur.next
+        return dummy_head.next            
+
+    
+
+   
