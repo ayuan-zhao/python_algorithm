@@ -1,34 +1,23 @@
-# -*- coding: utf-8 -*-
 class Solution:
-    def MaximumSumbarray(self,nums):
-        maxSub = nums[0]
-        curSum = 0
-        for n in nums:
-            if curSum < 0:
-                curSum = 0
-            curSum += n
-            maxSub = max(curSum,maxSub)
-        return maxSub  
-
-so = Solution()
-an0 = so.MaximumSumbarray([4,6,3,2,-4,6,7,-10,2,3])
-an1 = so.MaximumSumbarray([-7,-3,-1,-5,-6])
-an2 = so.MaximumSumbarray([-1,-2,-1,-1])
-an3 = so.MaximumSumbarray([-1,-2,0,-3,-4])
-an4 = so.MaximumSumbarray([1,2,-3,-5,-3,8,-7,6]) 
-
-print("[4,6,3,2,-4,6,7,-10,2,3]")
-print(an0) 
-print("([-7,-3,-1,-5,-6])")
-print(an1) 
-print("[-1,-2,-1,-1])")
-print(an2) 
-print("[-1,-2,0,-3,-4])")
-print(an3) 
-print("[1,2,-3,-5,-3,8,-7,6]")
-print(an4) 
+    def isValid(self,s):
+        stack = []
+        parenthesedict = {"[":"]","{":"}","(":")"}
+        for parenthese in s:
+            if parenthese in parenthesedict:
+                stack.append(parenthese) 
+            elif len(stack) ==0 or parenthesedict[stack.pop()]!= parenthese:
+                return False
+        return len(stack) == 0               
 
 
-        
+       
 
-    
+so = Solution() 
+ans0 = so.isValid("[[{{}}]]")      
+ans1 = so.isValid("[[{{}}][[")
+ans2 = so.isValid("[")
+ans3 = so.isValid("]")
+ans4 = so.isValid("")
+
+
+print(ans0, ans1, ans2, ans3, ans4)
