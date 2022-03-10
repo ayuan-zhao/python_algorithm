@@ -77,12 +77,12 @@ class SingleLinkList(object):
     @staticmethod
     def reverseListByNode(head):
         prev, curr = None,head
-        #原始 prev = None, curr = head = 4，cur.next = 5，第一轮，cur = 5 
+      
         while curr:
-            nxt = curr.next#原始nxt = 等于5，第一轮变6
-            curr.next = prev#原始 curr.next = 5,第一轮curr.next = null
-            prev = curr #prev原始等于null,第一轮等于4
-            curr = nxt#curr,原始等于4，第一轮等于5
+            nxt = curr.next
+            curr.next = prev
+            prev = curr 
+            curr = nxt
         return prev
 
 
